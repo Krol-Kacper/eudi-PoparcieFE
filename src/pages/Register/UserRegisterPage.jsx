@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { authService } from '../../services/authService.js';
 import {
@@ -15,15 +15,57 @@ function UserRegisterPage() {
   const [error, setError] = useState('');
   const [password, setPassword] = useState('');
   const [usePassword, setUsePassword] = useState(false);
+  const abortRef = useRef(null);
+
+  useEffect(() => {
+    return () => abortRef.current?.abort();
+  }, []);
 
   const handleMObywatelClick = async () => {
     try {
       setLoading(true);
       setError('');
-      await authService.zkpRegister1();
+
+      const responseData = await authService.registerStep1();
+      const verificationLink = responseData?.data;
+      if (!verificationLink) {
+        throw new Error('Serwer nie zwrócił linku weryfikacyjnego');
+      }
+
+      const url = new URL(verificationLink);
+      const documentId = url.searchParams.get('document_id');
+      if (!documentId) {
+        throw new Error('Brak document_id w linku weryfikacyjnym');
+      }
+
+      window.open(verificationLink, '_blank');
       setStep(2);
-    } catch {
-      setError('Błąd podczas łączenia z serwerem (/register/1)');
+
+      const controller = new AbortController();
+      abortRef.current = controller;
+
+      try {
+        await authService.registerStep2Poll(documentId, controller.signal);
+        setStep(3);
+      } catch (pollErr) {
+        if (pollErr.name === 'CanceledError' || pollErr.name === 'AbortError') {
+          return;
+        }
+        if (pollErr.code === 'ECONNABORTED') {
+          setError('Upłynął czas oczekiwania na weryfikację. Spróbuj ponownie.');
+          setStep(1);
+          return;
+        }
+        throw pollErr;
+      }
+    } catch (err) {
+      console.error(err);
+      setError(
+        err?.response?.data?.message ||
+        err?.message ||
+        'Błąd podczas łączenia z serwerem',
+      );
+      setStep(1);
     } finally {
       setLoading(false);
     }
@@ -36,12 +78,9 @@ function UserRegisterPage() {
 
       const identity = createIdentity(secretString);
       const commitment = identity.commitment.toString();
+      await authService.registerStep3(commitment);
 
-      await authService.zkpRegister2(commitment);
-
-      // Clear memory
       setPassword('');
-
       setTimeout(() => {
         navigate('/');
         window.location.reload();
@@ -50,8 +89,8 @@ function UserRegisterPage() {
       console.error(err);
       setError(
         err?.response?.data?.message ||
-          err?.message ||
-          'Błąd podczas tworzenia tożsamości lub generowania klucza',
+        err?.message ||
+        'Błąd podczas tworzenia tożsamości lub generowania klucza',
       );
     } finally {
       setLoading(false);
@@ -95,6 +134,21 @@ function UserRegisterPage() {
         <button className="mobywatel-btn" onClick={handleMObywatelClick} disabled={loading}>
           {loading ? 'Przetwarzanie...' : 'Zarejestruj z mObywatel'}
         </button>
+        {error && <p className="error-message">{error}</p>}
+      </div>
+    );
+  }
+
+  if (step === 2) {
+    return (
+      <div className="user-register-container">
+        <h2>Weryfikacja tożsamości</h2>
+        <p>
+          Otwarto kartę weryfikacji. Proszę dokończyć proces w otwartej karcie.
+          <br />
+          Oczekiwanie na potwierdzenie...
+        </p>
+        <div className="spinner" />
         {error && <p className="error-message">{error}</p>}
       </div>
     );

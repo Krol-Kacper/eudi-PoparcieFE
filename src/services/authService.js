@@ -8,70 +8,72 @@ const api = axios.create({
   withCredentials: true,
 });
 
-const zkpApi = axios.create({
-  baseURL: BASE_API_URL + 'zkp/',
+const registerApi = axios.create({
+  baseURL: BASE_API_URL + 'register/',
   withCredentials: true,
 });
 
 export const authService = {
-  // registering for organizations only
   register: async (userData) => {
     const response = await api.post('register', userData);
     if (response.status === 201) {
-      console.log('Registration successful:', response.data);
       localStorage.setItem(USERNAME, userData.username);
-      localStorage.setItem(ROLE, 'petition_user'); // hardcoded role.
-
+      localStorage.setItem(ROLE, 'petition_user');
       return response.data;
     } else {
       throw new Error('Registration failed');
     }
   },
-  zkpRegister1: async () => {
-    const response = await zkpApi.get('register/1');
-    if (response.status === 201 || response.status === 200) {
+
+  registerStep1: async () => {
+    const response = await registerApi.get('1');
+    if (response.status === 200 || response.status === 201) {
       return response.data;
     } else {
-      throw new Error('ZKP Registration 1 failed');
+      throw new Error('Rejestracja krok 1 nie powiodła się');
     }
   },
-  zkpRegister2: async (commitment) => {
-    const response = await zkpApi.post('register/2', { commitment });
-    if (response.status === 201 || response.status === 200) {
-      // Upon success, the user is registered (identity stored locally).
-      // We can set a local role.
+
+  registerStep2Poll: async (documentId, signal) => {
+    const response = await registerApi.get(`2/${documentId}`, {
+      signal,
+      timeout: 5 * 60 * 1000,
+    });
+    if (response.status === 200 || response.status === 201) {
+      return response.data;
+    } else {
+      throw new Error('Weryfikacja tożsamości nie powiodła się');
+    }
+  },
+
+  registerStep3: async (commitment) => {
+    const response = await registerApi.post('3', { commitment });
+    if (response.status === 200 || response.status === 201) {
       localStorage.setItem(ROLE, NORMAL_USER_ROLE);
       return response.data;
     } else {
-      throw new Error('ZKP Registration 2 failed');
+      throw new Error('Rejestracja krok 3 nie powiodła się');
     }
   },
+
   login: async (credentials) => {
     const response = await api.post('login', credentials);
-
     if (response.status === 200) {
       localStorage.setItem(USERNAME, credentials.username);
-      localStorage.setItem(ROLE, 'petition_user'); //hardcoded role
-
+      localStorage.setItem(ROLE, 'petition_user');
       return response.data;
     } else {
       throw new Error('Login failed');
     }
   },
+
   logout: () => {
     localStorage.removeItem(ROLE);
     localStorage.removeItem(USERNAME);
   },
-  isAdmin: () => {
-    return localStorage.getItem(ROLE) === ADMIN_ROLE;
-  },
-  isOrganization: () => {
-    return localStorage.getItem(ROLE) === ORGANIZATION_ROLE;
-  },
-  isNormalUser: () => {
-    return localStorage.getItem(ROLE) === NORMAL_USER_ROLE;
-  },
-  getUserName: () => {
-    return localStorage.getItem(USERNAME);
-  },
+
+  isAdmin: () => localStorage.getItem(ROLE) === ADMIN_ROLE,
+  isOrganization: () => localStorage.getItem(ROLE) === ORGANIZATION_ROLE,
+  isNormalUser: () => localStorage.getItem(ROLE) === NORMAL_USER_ROLE,
+  getUserName: () => localStorage.getItem(USERNAME),
 };
