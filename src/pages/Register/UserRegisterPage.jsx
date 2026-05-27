@@ -12,6 +12,7 @@ function UserRegisterPage() {
   const navigate = useNavigate();
   const [step, setStep] = useState(1);
   const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
   const [error, setError] = useState('');
   const [password, setPassword] = useState('');
   const [usePassword, setUsePassword] = useState(false);
@@ -81,10 +82,11 @@ function UserRegisterPage() {
       await authService.registerStep3(commitment);
 
       setPassword('');
+      setSuccess(true);
       setTimeout(() => {
         navigate('/');
         window.location.reload();
-      }, 1500);
+      }, 2000);
     } catch (err) {
       console.error(err);
       setError(
@@ -126,6 +128,41 @@ function UserRegisterPage() {
     }
   };
 
+  return (
+    <>
+      {success && (
+        <div className="toast toast--success">
+          Rejestracja zakończona pomyślnie!
+        </div>
+      )}
+      <RegisterContent
+        step={step}
+        loading={loading}
+        error={error}
+        password={password}
+        setPassword={setPassword}
+        usePassword={usePassword}
+        setUsePassword={setUsePassword}
+        handleMObywatelClick={handleMObywatelClick}
+        handlePasskeyClick={handlePasskeyClick}
+        handlePasswordSubmit={handlePasswordSubmit}
+      />
+    </>
+  );
+}
+
+function RegisterContent({
+  step,
+  loading,
+  error,
+  password,
+  setPassword,
+  usePassword,
+  setUsePassword,
+  handleMObywatelClick,
+  handlePasskeyClick,
+  handlePasswordSubmit,
+}) {
   if (step === 1) {
     return (
       <div className="user-register-container">
