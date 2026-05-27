@@ -83,6 +83,7 @@ function UserRegisterPage() {
 
       setPassword('');
       setSuccess(true);
+      authService.logout();
       setTimeout(() => {
         navigate('/');
         window.location.reload();

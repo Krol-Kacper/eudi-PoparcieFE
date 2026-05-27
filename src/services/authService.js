@@ -49,7 +49,6 @@ export const authService = {
   registerStep3: async (commitment) => {
     const response = await registerApi.post('3', { commitment });
     if (response.status === 200 || response.status === 201) {
-      localStorage.setItem(ROLE, NORMAL_USER_ROLE);
       return response.data;
     } else {
       throw new Error('Rejestracja krok 3 nie powiodła się');
