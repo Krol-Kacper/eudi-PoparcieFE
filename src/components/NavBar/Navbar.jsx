@@ -7,14 +7,12 @@ function Navbar() {
   const navigate = useNavigate();
   const [username, setUsername] = useState(authService.getUserName());
   const [isOrganization, setIsOrganization] = useState(false);
-  const [isNormalUser, setIsNormalUser] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleStorageChange = () => {
       setUsername(authService.getUserName());
       setIsOrganization(authService.isOrganization());
-      setIsNormalUser(authService.isNormalUser());
     };
 
     // Sprawdzaj zmiany w localStorage
@@ -30,7 +28,6 @@ function Navbar() {
     authService.logout();
     setUsername(null);
     setIsOrganization(false);
-    setIsNormalUser(false);
     setIsMenuOpen(false);
     navigate('/login');
     window.location.reload();
@@ -79,13 +76,7 @@ function Navbar() {
             O projekcie
           </Link>
         </li>
-        {isNormalUser ? (
-          <li>
-            <button onClick={handleLogout} className="nav-btn-secondary logout-btn">
-              Wyloguj
-            </button>
-          </li>
-        ) : username ? (
+        {username ? (
           <>
             <li className="welcome-msg">Witaj, {username}!</li>
             {isOrganization && (
