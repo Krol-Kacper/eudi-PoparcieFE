@@ -6,6 +6,7 @@ import {
   createPasskeySecret,
   createIdentity,
 } from '../../services/identityService.js';
+
 import './UserRegisterPage.css';
 
 function UserRegisterPage() {
@@ -17,9 +18,14 @@ function UserRegisterPage() {
   const [password, setPassword] = useState('');
   const [usePassword, setUsePassword] = useState(false);
   const abortRef = useRef(null);
+  const qrWindowRef = useRef(null);
+  const channelRef = useRef(null);
 
   useEffect(() => {
-    return () => abortRef.current?.abort();
+    return () => {
+      abortRef.current?.abort();
+      channelRef.current?.close();
+    };
   }, []);
 
   const handleEudiWalletClick = async () => {
@@ -34,8 +40,12 @@ function UserRegisterPage() {
         throw new Error('Serwer nie zwrócił danych weryfikacyjnych (qr/transactionId)');
       }
 
-      // Open QR code URL in new tab
-      window.open(qr, '_blank');
+      // Store QR data and open the scan page in a new tab
+      sessionStorage.setItem('eudi-qr-data', qr);
+      qrWindowRef.current = window.open('/qr-scan', '_blank');
+
+      // Set up BroadcastChannel for cross-tab communication
+      channelRef.current = new BroadcastChannel('eudi-registration');
       setStep(2);
 
       // Start long polling for verification
@@ -44,16 +54,20 @@ function UserRegisterPage() {
 
       try {
         await authService.registerStep2Poll(transactionId, controller.signal);
+        // Notify QR tab of success
+        channelRef.current?.postMessage({ type: 'VERIFICATION_SUCCESS' });
         setStep(3);
       } catch (pollErr) {
         if (pollErr.name === 'CanceledError' || pollErr.name === 'AbortError') {
           return;
         }
         if (pollErr.code === 'ECONNABORTED') {
+          channelRef.current?.postMessage({ type: 'VERIFICATION_TIMEOUT' });
           setError('Upłynął czas oczekiwania na weryfikację. Spróbuj ponownie.');
           setStep(1);
           return;
         }
+        channelRef.current?.postMessage({ type: 'VERIFICATION_ERROR' });
         throw pollErr;
       }
     } catch (err) {
