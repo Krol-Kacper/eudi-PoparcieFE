@@ -1,9 +1,9 @@
 .petition-card {
   display: flex;
   flex-direction: column;
-  background: linear-gradient(to bottom right, #ffffff, #fffaf8);
-  border: 1px solid #ffe4e1;
-  border-top: 5px solid var(--accent, #cb160e);
+  background: linear-gradient(to bottom right, #ffffff, #f8faff);
+  border: 1px solid #dbeafe;
+  border-top: 5px solid var(--accent, #1e40af);
   border-radius: 16px;
   padding: 16px;
   text-decoration: none;
@@ -20,7 +20,7 @@
   overflow: hidden;
   position: relative;
   text-align: left;
-  box-shadow: 0 4px 12px rgba(203, 22, 14, 0.04);
+  box-shadow: 0 4px 12px rgba(30, 64, 175, 0.04);
 }
 
 .petition-card.dashboard-variant {
@@ -74,13 +74,13 @@
 
 .status-expired {
   background-color: #fff1f0;
-  color: #cb160e;
+  color: #1e40af;
 }
 
 .archive-button-card {
-  background-color: #fff1f0;
-  border: 1px solid #ffccc7;
-  color: #cb160e;
+  background-color: #eff6ff;
+  border: 1px solid #bfdbfe;
+  color: #1e40af;
   padding: 4px 10px;
   border-radius: 6px;
   font-size: 0.75rem;
@@ -91,7 +91,7 @@
 }
 
 .archive-button-card:hover:not(:disabled) {
-  background-color: #cb160e;
+  background-color: #1e40af;
   color: #ffffff;
 }
 
@@ -104,23 +104,23 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  background: #fff1f0;
+  background: #eff6ff;
   padding: 4px 8px;
   border-radius: 6px;
-  border: 1px solid #ffccc7;
+  border: 1px solid #bfdbfe;
   z-index: 10;
 }
 
 .archive-confirm-text {
   font-size: 0.7rem;
   font-weight: 600;
-  color: #cb160e;
+  color: #1e40af;
 }
 
 .archive-btn-yes,
 .archive-btn-no {
   background: white;
-  border: 1px solid #ffccc7;
+  border: 1px solid #bfdbfe;
   border-radius: 4px;
   font-size: 0.7rem;
   font-weight: 600;
@@ -130,11 +130,11 @@
 }
 
 .archive-btn-yes {
-  color: #cb160e;
+  color: #1e40af;
 }
 
 .archive-btn-yes:hover:not(:disabled) {
-  background: #cb160e;
+  background: #1e40af;
   color: white;
 }
 
@@ -154,11 +154,11 @@
 
 .petition-card.dashboard-variant .progress-bar {
   height: 6px;
-  background-color: #ffeded;
+  background-color: #eff6ff;
 }
 
 .petition-card.dashboard-variant .progress-fill {
-  background: linear-gradient(to right, #cb160e, #ff4d4d);
+  background: linear-gradient(to right, #1e40af, #60a5fa);
 }
 
 .petition-card.dashboard-variant .petition-stats {
@@ -174,8 +174,8 @@
 .views-stat {
   display: flex;
   align-items: center;
-  color: #cb160e;
-  background: #fff1f0;
+  color: #1e40af;
+  background: #eff6ff;
   padding: 2px 8px;
   border-radius: 12px;
   font-weight: 600;
@@ -183,8 +183,8 @@
 
 .petition-card:hover:not(.dashboard-variant) {
   transform: translateY(-6px);
-  box-shadow: 0 16px 32px rgba(203, 22, 14, 0.12);
-  border-color: #ffb3b3;
+  box-shadow: 0 16px 32px rgba(30, 64, 175, 0.12);
+  border-color: #93c5fd;
 }
 
 .petition-content {
@@ -208,7 +208,7 @@
 }
 
 .petition-author strong {
-  color: var(--accent, #cb160e);
+  color: var(--accent, #1e40af);
 }
 
 .petition-description {
@@ -223,13 +223,13 @@
 .petition-footer {
   margin-top: 24px;
   padding-top: 16px;
-  border-top: 1px solid #ffe4e1;
+  border-top: 1px solid #dbeafe;
 }
 
 .progress-bar {
   width: 100%;
   height: 10px;
-  background-color: #ffeded;
+  background-color: #eff6ff;
   border-radius: 6px;
   overflow: hidden;
   margin-bottom: 12px;
@@ -237,7 +237,7 @@
 
 .progress-fill {
   height: 100%;
-  background: linear-gradient(to right, #cb160e, #ff4d4d);
+  background: linear-gradient(to right, #1e40af, #60a5fa);
   border-radius: 6px;
   transition: width 0.4s ease;
 }

@@ -45,7 +45,7 @@ function Navbar() {
     <nav className="navbar">
       <Link to="/" className="navbar-logo-link" onClick={handleMenuClose}>
         <div className="navbar-logo">
-          <img src="/godlo.png" alt="Godło" className="navbar-godlo" />
+          <img src="/eudiw.png" alt="EUDI Wallet" className="navbar-godlo" />
           <div className="navbar-brand">
             <span className="logo-name">
               <span className="logo-m">m</span>Poparcie

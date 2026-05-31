@@ -26,7 +26,7 @@ export const authService = {
   },
 
   registerStep1: async () => {
-    const response = await registerApi.get('1');
+    const response = await registerApi.post('1');
     if (response.status === 200 || response.status === 201) {
       return response.data;
     } else {
@@ -34,8 +34,8 @@ export const authService = {
     }
   },
 
-  registerStep2Poll: async (documentId, signal) => {
-    const response = await registerApi.get(`2/${documentId}`, {
+  registerStep2Poll: async (transactionId, signal) => {
+    const response = await registerApi.get(`2/${transactionId}`, {
       signal,
       timeout: 5 * 60 * 1000,
     });

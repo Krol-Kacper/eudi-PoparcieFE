@@ -17,13 +17,13 @@ function AboutPage() {
           <strong>nielinkowalny</strong> system do wyrażania poparcia dla petycji, a w przyszłości
           także do głosowania elektronicznego (e-votingu). Naszym celem jest przeniesienie zaufania,
           jakie mamy do tradycyjnej, papierowej urny wyborczej, do świata cyfrowego. Chcemy zachęcić
-          ludzi do następującej cyfryzacji, rozpoczętej przez <strong> mObywatela</strong>. Zamiast
+          ludzi do następującej cyfryzacji, rozpoczętej przez <strong> EUDI Wallet</strong>. Zamiast
           podpisywać petycję, oddajesz swój głos online, bez konieczności ujawniania swojej
           tożsamości.
         </p>
         <br></br>
         <p>
-          Dzięki zastosowaniu zaawansowanych technologii kryptograficznych i mObywatela, system
+          Dzięki zastosowaniu zaawansowanych technologii kryptograficznych i EUDI Wallet, system
           pozwala stwierdzić że jesteś prawdziwym człowiekiem uprawnionym do oddania głosu,
           jednocześnie nie znając o tobie żadnych danych osobowych.
         </p>
@@ -60,7 +60,7 @@ function AboutPage() {
             <ul className="about-step__list">
               <li>
                 <strong>Potwierdzenie tożsamości:</strong> Rejestrujesz się za pomocą rządowej
-                aplikacji <em>mObywatel</em>. Dzięki temu wiemy, że jesteś człowiekiem, a&nbsp;nie
+                aplikacji <em>EUDI Wallet</em>. Dzięki temu wiemy, że jesteś człowiekiem, a&nbsp;nie
                 botem, czy innym automatem.
               </li>
               <li>

@@ -6,10 +6,10 @@
   min-height: calc(100vh - 100px);
   /* Mesh-like soft gradient background */
   background:
-    radial-gradient(at 0% 0%, rgba(203, 22, 14, 0.05) 0px, transparent 50%),
-    radial-gradient(at 100% 0%, rgba(203, 22, 14, 0.03) 0px, transparent 50%),
-    radial-gradient(at 100% 100%, rgba(203, 22, 14, 0.05) 0px, transparent 50%),
-    radial-gradient(at 0% 100%, rgba(203, 22, 14, 0.03) 0px, transparent 50%), var(--bg-subtle);
+    radial-gradient(at 0% 0%, rgba(30, 64, 175, 0.05) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(30, 64, 175, 0.03) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(30, 64, 175, 0.05) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, rgba(30, 64, 175, 0.03) 0px, transparent 50%), var(--bg-subtle);
 }
 
 .petition-container {
@@ -19,7 +19,7 @@
   border: 1px solid var(--border);
   /* Top accent gradient border */
   border-top: 8px solid transparent;
-  border-image: linear-gradient(to right, #cb160e, #ff4d4d) 1;
+  border-image: linear-gradient(to right, #1e40af, #60a5fa) 1;
   border-radius: 24px;
   padding: 4rem;
   box-shadow: 0 15px 50px rgba(0, 0, 0, 0.06);
@@ -48,9 +48,9 @@
 }
 
 .category-badge {
-  background-color: #fff1f0;
-  color: #cb160e;
-  border: 1px solid #ffa39e;
+  background-color: #eff6ff;
+  color: #1e40af;
+  border: 1px solid #93c5fd;
 }
 
 .status-badge {
@@ -130,7 +130,7 @@
   left: 24px;
   background: white;
   padding: 0 14px;
-  color: #cb160e;
+  color: #1e40af;
   font-weight: 800;
   font-size: 0.9rem;
   line-height: 24px;
@@ -156,7 +156,7 @@
   margin-bottom: 3rem;
   padding: 2.5rem;
   background: linear-gradient(to bottom, #fffcfc, #fff);
-  border: 1px solid #ffe8e8;
+  border: 1px solid #dbeafe;
   border-radius: 20px;
 }
 
@@ -193,10 +193,10 @@
 .progress-fill-large {
   height: 100%;
   /* Gradient for the progress bar */
-  background: linear-gradient(to right, #cb160e, #ff4d4d);
+  background: linear-gradient(to right, #1e40af, #60a5fa);
   border-radius: 100px;
   transition: width 1s cubic-bezier(0.34, 1.56, 0.64, 1);
-  box-shadow: 0 2px 10px rgba(203, 22, 14, 0.3);
+  box-shadow: 0 2px 10px rgba(30, 64, 175, 0.3);
 }
 
 .stats-footer {
@@ -213,13 +213,13 @@
 }
 
 .deadline-info strong {
-  color: #cb160e;
+  color: #1e40af;
 }
 
 .status-badge.closed {
-  background-color: #fff1f0;
+  background-color: #eff6ff;
   color: #cf1322;
-  border: 1px solid #ffa39e;
+  border: 1px solid #93c5fd;
 }
 
 .status-badge.archived {
@@ -240,7 +240,7 @@
   width: auto;
   min-width: 240px;
   padding: 14px 32px;
-  background-color: #cb160e;
+  background-color: #1e40af;
   color: white;
   border: none;
   border-radius: 100px;
@@ -248,13 +248,13 @@
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
-  box-shadow: 0 4px 12px rgba(203, 22, 14, 0.2);
+  box-shadow: 0 4px 12px rgba(30, 64, 175, 0.2);
 }
 
 .sign-button:hover:not(:disabled) {
-  background-color: #b3050f;
+  background-color: #1a3590;
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(203, 22, 14, 0.3);
+  box-shadow: 0 6px 16px rgba(30, 64, 175, 0.3);
 }
 
 .sign-button:active:not(:disabled) {
@@ -264,17 +264,17 @@
 .admin-menu {
   margin-bottom: 2rem;
   padding: 1.25rem;
-  border: 1px solid #ffd4d1;
+  border: 1px solid #bfdbfe;
   border-radius: 16px;
-  background: #fff8f7;
+  background: #eff6ff;
 }
 
 .admin-menu-toggle {
   padding: 10px 18px;
   border-radius: 100px;
-  border: 1px solid #cb160e;
+  border: 1px solid #1e40af;
   background: white;
-  color: #cb160e;
+  color: #1e40af;
   font-weight: 600;
   cursor: pointer;
 }
@@ -289,8 +289,8 @@
 .admin-action-button {
   padding: 10px 16px;
   border-radius: 10px;
-  border: 1px solid #cb160e;
-  background: #cb160e;
+  border: 1px solid #1e40af;
+  background: #1e40af;
   color: white;
   font-weight: 600;
   cursor: pointer;
@@ -325,12 +325,12 @@
 }
 
 .error-message {
-  color: #cb160e;
-  background-color: #fff1f0;
+  color: #1e40af;
+  background-color: #eff6ff;
   padding: 1.25rem;
   border-radius: 12px;
   margin-bottom: 2rem;
-  border: 1px solid #ffa39e;
+  border: 1px solid #93c5fd;
   font-weight: 600;
 }
 

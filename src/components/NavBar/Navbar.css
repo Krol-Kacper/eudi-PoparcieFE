@@ -79,17 +79,17 @@
 }
 
 .nav-btn-primary:hover {
-  background-color: #b3050f;
+  background-color: #1a3590;
   transform: translateY(-2px);
 }
 
 .create-petition-btn {
-  background-color: #ff0000;
+  background-color: #2563eb;
   padding: 10px 20px;
 }
 
 .create-petition-btn:hover {
-  background-color: #ff2d2dc5;
+  background-color: #3b82f6c5;
   transform: translateY(-2px);
 }
 
@@ -107,7 +107,7 @@
 }
 
 .nav-btn-secondary:hover {
-  background-color: rgba(226, 6, 19, 0.05);
+  background-color: rgba(37, 99, 235, 0.05);
   transform: translateY(-2px);
 }
 
@@ -149,7 +149,7 @@
 
 .nav-link:hover {
   color: var(--accent) !important;
-  background-color: rgba(203, 22, 14, 0.05);
+  background-color: rgba(30, 64, 175, 0.05);
 }
 
 .about-btn {
@@ -169,7 +169,7 @@
 }
 
 .about-btn:hover {
-  background-color: #b3050f;
+  background-color: #1a3590;
   transform: translateY(-2px);
 }
 

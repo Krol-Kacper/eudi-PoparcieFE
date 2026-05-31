@@ -66,8 +66,8 @@
 }
 
 .auth-container input:focus {
-  border-color: #b3050f;
-  box-shadow: 0 0 0 3px rgb(167, 32, 32);
+  border-color: #1a3590;
+  box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.3);
 }
 
 .auth-container button {
@@ -87,7 +87,7 @@
 }
 
 .auth-container button:hover:not(:disabled) {
-  background-color: #b3050f;
+  background-color: #1a3590;
   transform: translateY(-2px);
 }
 
@@ -101,7 +101,7 @@
 }
 
 .error {
-  color: #cb160e;
+  color: #1e40af;
   font-size: 14px;
   margin-top: 0.5rem;
   display: block;
@@ -143,7 +143,7 @@
 }
 
 .search-input:focus {
-  box-shadow: 0 0 0 3px rgb(167, 32, 32);
+  box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.3);
 }
 .filter-select {
   flex: 1;
@@ -154,7 +154,7 @@
   outline: none;
 }
 .filter-select:hover {
-  box-shadow: 0 0 0 3px rgb(167, 32, 32);
+  box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.3);
 }
 @media (max-width: 600px) {
   .filter-container {
@@ -239,8 +239,8 @@
 
 .filter-button:hover,
 .filter-button:focus {
-  background-color: #c15c57;
-  border-color: #b8140a;
+  background-color: #3b82f6;
+  border-color: #1a3590;
   outline: none;
   transform: scale(1.05);
 }

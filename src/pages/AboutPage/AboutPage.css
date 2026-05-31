@@ -33,7 +33,7 @@
   font-size: 1.15rem;
   font-weight: 600;
   letter-spacing: 0.15em;
-  color: var(--accent, #cb160e);
+  color: var(--accent, #1e40af);
   margin: 0;
 }
 
@@ -61,7 +61,7 @@
   color: var(--text-h, #1a1a1a);
   margin: 0 0 1rem;
   padding-bottom: 0.75rem;
-  border-bottom: 2px solid var(--accent, #cb160e);
+  border-bottom: 2px solid var(--accent, #1e40af);
 }
 
 .about-section__text {
@@ -91,7 +91,7 @@
   justify-content: center;
   width: 2.75rem;
   height: 2.75rem;
-  background: var(--accent, #cb160e);
+  background: var(--accent, #1e40af);
   color: #fff;
   font-size: 1.25rem;
   font-weight: 700;
@@ -116,8 +116,8 @@
   display: inline-block;
   font-size: 0.8rem;
   font-weight: 600;
-  color: var(--accent, #cb160e);
-  background: rgba(203, 22, 14, 0.08);
+  color: var(--accent, #1e40af);
+  background: rgba(30, 64, 175, 0.08);
   padding: 0.15em 0.6em;
   border-radius: 4px;
   vertical-align: middle;
@@ -157,7 +157,7 @@
 .about-trust-card {
   background: #f8f9fa;
   border: 1px solid var(--border, #e0e0e0);
-  border-left: 4px solid var(--accent, #cb160e);
+  border-left: 4px solid var(--accent, #1e40af);
   border-radius: 8px;
   padding: 1.25rem 1.5rem;
 }
@@ -194,7 +194,7 @@
   font-size: 1.35rem;
   font-weight: 700;
   letter-spacing: 0.04em;
-  color: var(--accent, #cb160e);
+  color: var(--accent, #1e40af);
   margin-top: 0.75rem;
 }
 

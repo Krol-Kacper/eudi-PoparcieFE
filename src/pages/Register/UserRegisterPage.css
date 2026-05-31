@@ -22,7 +22,7 @@
   font-size: 0.95rem;
 }
 
-.mobywatel-btn,
+.eudi-btn,
 .passkey-btn,
 .submit-btn {
   width: 100%;
@@ -32,17 +32,15 @@
   font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
-  transition:
-    background-color 0.2s,
-    transform 0.1s;
+  transition: background-color 0.2s, transform 0.1s;
 }
 
-.mobywatel-btn {
-  background-color: #e51d38; /* mObywatel red/pink-ish */
+.eudi-btn {
+  background-color: #1e40af;
   color: white;
 }
-.mobywatel-btn:hover {
-  background-color: #d11830;
+.eudi-btn:hover {
+  background-color: #1a3590;
 }
 
 .passkey-btn {
@@ -55,12 +53,12 @@
 }
 
 .submit-btn {
-  background-color: #cb160e;
+  background-color: #1e40af;
   color: white;
   margin-top: 15px;
 }
 .submit-btn:hover {
-  background-color: #b3050f;
+  background-color: #1a3590;
 }
 
 .link-btn {
@@ -104,19 +102,15 @@ button:disabled {
   width: 48px;
   height: 48px;
   border: 5px solid #e0e0e0;
-  border-top: 5px solid #e51d38;
+  border-top: 5px solid #1e40af;
   border-radius: 50%;
   animation: spin 1s linear infinite;
   margin: 20px auto;
 }
 
 @keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 .toast {
@@ -140,23 +134,11 @@ button:disabled {
 }
 
 @keyframes toastIn {
-  from {
-    opacity: 0;
-    transform: translateX(-50%) translateY(-16px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-  }
+  from { opacity: 0; transform: translateX(-50%) translateY(-16px); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0); }
 }
 
 @keyframes toastOut {
-  from {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-  }
-  to {
-    opacity: 0;
-    transform: translateX(-50%) translateY(-16px);
-  }
+  from { opacity: 1; transform: translateX(-50%) translateY(0); }
+  to { opacity: 0; transform: translateX(-50%) translateY(-16px); }
 }

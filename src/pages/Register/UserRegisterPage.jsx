@@ -22,31 +22,28 @@ function UserRegisterPage() {
     return () => abortRef.current?.abort();
   }, []);
 
-  const handleMObywatelClick = async () => {
+  const handleEudiWalletClick = async () => {
     try {
       setLoading(true);
       setError('');
 
       const responseData = await authService.registerStep1();
-      const verificationLink = responseData?.data;
-      if (!verificationLink) {
-        throw new Error('Serwer nie zwrócił linku weryfikacyjnego');
+      const qr = responseData?.qr;
+      const transactionId = responseData?.transactionId;
+      if (!qr || !transactionId) {
+        throw new Error('Serwer nie zwrócił danych weryfikacyjnych (qr/transactionId)');
       }
 
-      const url = new URL(verificationLink);
-      const documentId = url.searchParams.get('document_id');
-      if (!documentId) {
-        throw new Error('Brak document_id w linku weryfikacyjnym');
-      }
-
-      window.open(verificationLink, '_blank');
+      // Open QR code URL in new tab
+      window.open(qr, '_blank');
       setStep(2);
 
+      // Start long polling for verification
       const controller = new AbortController();
       abortRef.current = controller;
 
       try {
-        await authService.registerStep2Poll(documentId, controller.signal);
+        await authService.registerStep2Poll(transactionId, controller.signal);
         setStep(3);
       } catch (pollErr) {
         if (pollErr.name === 'CanceledError' || pollErr.name === 'AbortError') {
@@ -144,7 +141,7 @@ function UserRegisterPage() {
         setPassword={setPassword}
         usePassword={usePassword}
         setUsePassword={setUsePassword}
-        handleMObywatelClick={handleMObywatelClick}
+        handleEudiWalletClick={handleEudiWalletClick}
         handlePasskeyClick={handlePasskeyClick}
         handlePasswordSubmit={handlePasswordSubmit}
       />
@@ -160,7 +157,7 @@ function RegisterContent({
   setPassword,
   usePassword,
   setUsePassword,
-  handleMObywatelClick,
+  handleEudiWalletClick,
   handlePasskeyClick,
   handlePasswordSubmit,
 }) {
@@ -168,9 +165,9 @@ function RegisterContent({
     return (
       <div className="user-register-container">
         <h2>Rejestracja użytkownika</h2>
-        <p>Rozpocznij proces rejestracji używając aplikacji mObywatel.</p>
-        <button className="mobywatel-btn" onClick={handleMObywatelClick} disabled={loading}>
-          {loading ? 'Przetwarzanie...' : 'Zarejestruj z mObywatel'}
+        <p>Rozpocznij proces rejestracji używając portfela EUDI Wallet.</p>
+        <button className="eudi-btn" onClick={handleEudiWalletClick} disabled={loading}>
+          {loading ? 'Przetwarzanie...' : 'Zarejestruj z EUDI Wallet'}
         </button>
         {error && <p className="error-message">{error}</p>}
       </div>
